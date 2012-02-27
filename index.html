@@ -7,7 +7,7 @@
     <script src="http://mapknitter.org/javascripts/prototype.js"></script>
 
     <style>
-	#link {
+	#sharelink, #share {
 		font-family:lucida grande, lucida sans console, sans-serif;
 		background:white;
 		padding:4px;
@@ -17,6 +17,12 @@
 		left:0;
 		z-index:999;
 	}
+	#share {
+		top:0;
+		-moz-opacity: 0.8;
+		opacity:.8;
+		filter:alpha(opacity=80);
+	}
 	#link a {
 		color:#333;
 	}
@@ -24,13 +30,26 @@
     
   </head>
   <body style="margin:0;"> 
-    <div id="link"><a href="">permalink</a></div>
+    <div id="sharelink">
+	<a href="javascript:void(0);" onClick="$('share').show()">share</a>
+    </div>
+
+    <div id="share" style="display:none;">
+	<h2>Share</h2>
+	<p><a href="">permalink</a> (click for fullscreen)</p>
+	<p><b>Embed code:</b><br />
+	<textarea id="embedcode"></textarea>
+	</p>
+	<p><a href="javascript:void(0);" onClick="$('share').hide()">close</a></p>
+    </div>
 
     <div class=" leaflet-container" id="map" style="width:100%;height:100%;"></div>
     <script src="http://leaflet.cloudmade.com/dist/leaflet.js"></script>
     <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>                                                                   
     <script src="google.js"></script>
     <script>
+
+   $('embedcode').value = '<iframe style="border:none;" width="500" height="375" src="'+window.location+'"></iframe>'
 
    function get_param(param) {
      var search = window.location.search.substring(1);
