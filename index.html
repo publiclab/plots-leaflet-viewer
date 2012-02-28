@@ -40,7 +40,7 @@
 
     <div id="share" style="display:none;">
 	<h2>Share</h2>
-	<p><a href="">permalink</a> (click for fullscreen)</p>
+	<p><a target="_blank"href="">permalink</a> (click for fullscreen)</p>
 	<p><b>Embed code:</b><br />
 	<textarea id="embedcode"></textarea>
 	</p>
@@ -92,7 +92,7 @@
 	var zoom = get_param('zoom') || 18
                                                                                                                    
 	//var background = new L.TileLayer(background_tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"});
-	var google = new L.Google();
+	var google = new L.Google("SATELLITE",{opacity:0.5});
 	var main = new L.TileLayer(tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"});
 
 	var map = new L.Map('map', {
