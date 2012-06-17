@@ -89,6 +89,7 @@
 	//var backdroptms = "http://hypercube.telascience.org/tilecache/tilecache.py/1.0.0/NewWorld_google/{z}/{x}/{y}.png"
 	var minZoom = get_param('min') || 15
 	var maxZoom = get_param('max') || 22
+	var label = get_param('label') || "Main"
 	var zoom = get_param('zoom') || 18
                                                                                                                    
 	//var background = new L.TileLayer(background_tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"});
@@ -105,11 +106,15 @@
 	    "Google": google
 	};
 	var overlayMaps = {
-	    "Visible": main
+	    label: main
 	};
  
 	var layersControl = new L.Control.Layers(baseMaps,overlayMaps);
 	map.addControl(layersControl);
+
+	if (get_param("backlink")) {
+		$('share').append("<a href='"+get_param('backlink')+"'>View original map</a>")
+	}	
     }  
     </script> 
     
