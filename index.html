@@ -96,7 +96,7 @@
                                                                                                                    
 	//var background = new L.TileLayer(background_tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"});
 	var google = new L.Google("SATELLITE",{opacity:0.5});
-	var main = new L.TileLayer(tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"});
+	var main = new L.TileLayer(tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms", tms:true});
 
 	var map = new L.Map('map', {
 		crs:L.CRS.EPSG3857,

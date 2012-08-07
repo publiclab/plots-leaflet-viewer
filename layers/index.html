@@ -96,7 +96,7 @@
                                                                                                                    
 	//var background = new L.TileLayer(background_tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"});
 	var google = new L.Google();
-	var main = new L.TileLayer(tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"});
+	var main = new L.TileLayer(tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms", tms:true});
 	var layers = []
 	var labels = []
 
@@ -108,7 +108,7 @@
 	};
 
 	layer_urls.each(function(layer_url) {
-		layers.push(new L.TileLayer(layer_url.split('*')[0]+"{z}/{x}/{y}.png", {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"}))
+		layers.push(new L.TileLayer(layer_url.split('*')[0]+"{z}/{x}/{y}.png", {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms", tms: true}))
 		labels.push(layer_url.split('*')[1])
 	})
 	layers.each(function(layer,index){
@@ -121,11 +121,11 @@
 
 	var map = new L.Map('map', {
 		crs:L.CRS.EPSG3857,
-		layers: [google,main]
+		layers: [main]
 	});
 	map.setView(new L.LatLng(parseFloat(get_param('lat')),parseFloat(get_param('lon'))), zoom)
 
-	var layersControl = new L.Control.Layers(baseMaps,overlayMaps);
+	var layersControl = new L.Control.Layers(baseMaps,overlayMaps,{autoZIndex: true});
 	map.addControl(layersControl);
     }  
     </script> 
