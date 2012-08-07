@@ -121,7 +121,7 @@
 
 	var map = new L.Map('map', {
 		crs:L.CRS.EPSG3857,
-		layers: [main]
+		layers: [google,main]
 	});
 	map.setView(new L.LatLng(parseFloat(get_param('lat')),parseFloat(get_param('lon'))), zoom)
 
