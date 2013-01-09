@@ -103,6 +103,8 @@
 		layers: [google,main]
 	});
 	map.setView(new L.LatLng(parseFloat(get_param('lat')),parseFloat(get_param('lon'))), zoom)
+	window.parent.map = map
+	window.parent.L = L
 
 	var baseMaps = {
 	    "Google": google
@@ -120,11 +122,16 @@
   
     // COMMENTING CODE
 
-map.on('click', function(e) {
-	var comment = prompt("Enter a comment")
-	L.marker([e.latlng.lat, e.latlng.lng]).addTo(map).bindPopup(comment).openPopup();
-})
-
+	notes = get_param('notes')
+	notes = notes.substr(0,notes.length-1).split('|')
+	notes.each(function(note) {
+		args = note.split(',')
+		description = args[0]
+		lat = args[1]
+		lon = args[2]
+		L.marker([lat,lon]).addTo(map).bindPopup(description).openPopup();
+		console.log(lat,lon,description)
+	})
 }
   </script> 
     
