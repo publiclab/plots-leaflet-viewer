@@ -102,7 +102,6 @@
 		crs:L.CRS.EPSG3857,
 		layers: [google,main]
 	});
-	map.setView(new L.LatLng(parseFloat(get_param('lat')),parseFloat(get_param('lon'))), zoom)
 	window.parent.map = map
 	window.parent.L = L
 
@@ -132,6 +131,7 @@
 		L.marker([lat,lon]).addTo(map).bindPopup(description).openPopup();
 		console.log(lat,lon,description)
 	})
+	map.setView(new L.LatLng(parseFloat(get_param('lat')),parseFloat(get_param('lon'))), zoom)
 }
   </script> 
     
