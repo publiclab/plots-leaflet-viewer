@@ -129,7 +129,6 @@
 		lat = args[1]
 		lon = args[2]
 		L.marker([lat,lon]).addTo(map).bindPopup(description).openPopup();
-		console.log(lat,lon,description)
 	})
 	map.setView(new L.LatLng(parseFloat(get_param('lat')),parseFloat(get_param('lon'))), zoom)
 }
