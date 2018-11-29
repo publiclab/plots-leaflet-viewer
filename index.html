@@ -39,7 +39,7 @@
   </head>
   <body style="margin:0;"> 
     <div id="sharelink">
-	<a href="javascript:void(0);" onClick="$('share').show()">share</a> | <a href="http://publiclab.org">PublicLab.org</a>
+	<a href="javascript:void(0);" onClick="$('#share').show()">share</a> | <a href="http://publiclab.org">PublicLab.org</a>
     </div>
 
     <div id="share" style="display:none;">
@@ -50,7 +50,7 @@
 	<p><b>Embed code:</b><br />
 	<textarea id="embedcode"></textarea>
 	</p>
-	<p><a href="javascript:void(0);" onClick="$('share').hide()">close</a></p>
+	<p><a href="javascript:void(0);" onClick="$('#share').hide()">close</a></p>
     </div>
 
     <div class=" leaflet-container" id="map" style="width:100%;height:100%;"></div>
@@ -127,7 +127,7 @@
 	map.addControl(layersControl);
 
 	if (get_param("backlink")) {
-		$('links').insert({top:"<p><a href='"+get_param('backlink')+"'>View original map</a></p>"})
+		$('#links').insert({top:"<p><a href='"+get_param('backlink')+"'>View original map</a></p>"})
 	}	
     }  
     </script> 
