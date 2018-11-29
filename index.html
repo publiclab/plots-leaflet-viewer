@@ -2,9 +2,12 @@
    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
     <title>PLOTS Leaflet Viewer</title>
-    <link rel="stylesheet" href="http://leaflet.cloudmade.com/dist/leaflet.css">
+    <link rel="stylesheet" href="https://publiclab.github.io/leaflet-blurred-location/node_modules/leaflet/dist/leaflet.css">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
-    <script src="http://mapknitter.org/javascripts/prototype.js"></script>
+    <script src="https://sequencer.publiclab.org/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://publiclab.github.io/leaflet-blurred-location/node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyAOLUQngEmJv0_zcG1xkGq-CXIPpLQY8iQ"></script>                                                                   
+    <script src='//unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
 
     <style>
 	#sharelink, #share {
@@ -51,9 +54,6 @@
     </div>
 
     <div class=" leaflet-container" id="map" style="width:100%;height:100%;"></div>
-    <script src="http://leaflet.cloudmade.com/dist/leaflet.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyAOLUQngEmJv0_zcG1xkGq-CXIPpLQY8iQ"></script>                                                                   
-    <script src="google.js"></script>
     <script>
 
    $('embedcode').value = '<iframe style="border:none;" width="500" height="375" src="'+window.location+'"></iframe>'
@@ -96,16 +96,27 @@
 	var zoom = get_param('zoom') || 18
                                                                                                                    
 	//var background = new L.TileLayer(background_tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms"});
-	var google = new L.Google("SATELLITE",{opacity:0.5});
+	var googleRoad = L.gridLayer.googleMutant({
+		type: 'roadmap',
+		 styles: [
+			{elementType: 'labels', stylers: [{visibility: 'off'}]},
+			{featureType: 'water', stylers: [{color: '#444444'}]}
+		]
+	});
+	var google = L.gridLayer.googleMutant({
+		type: 'satellite'
+	});
+
 	var main = new L.TileLayer(tms, {minZoom: minZoom, maxZoom: maxZoom, scheme:"tms", tms:true});
 
 	var map = new L.Map('map', {
 		crs:L.CRS.EPSG3857,
-		layers: [google,main]
+		layers: [google, main, googleRoad]
 	});
 	map.setView(new L.LatLng(parseFloat(get_param('lat')),parseFloat(get_param('lon'))), zoom)
 
 	var baseMaps = {
+	    "Google Roadmap": googleRoad,
 	    "Google": google
 	};
 	var overlayMaps = {
