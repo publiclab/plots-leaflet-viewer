@@ -1,4 +1,4 @@
-##PLOTS LEAFLET VIEWER##
+## PLOTS LEAFLET VIEWER
 
 A leaflet-based TMS viewer which accepts a TMS URL as a GET parameter. Good for fullscreen map viewing and embedding.
 
@@ -13,5 +13,6 @@ It accests parameters for a TMS as well as others, following this syntax:
 
 Use it to make embed codes:
 
-    <iframe style="border:none;" width="500" height="375" src="http://archive.publiclaboratory.org/leaflet/?tms=http://mapknitter.org/tms/lone-rock-pond/&amp;lon=-73.0733&amp;lat=43.96055&amp;zoom=18"></iframe>
-
+```html
+<iframe style="border:none;" width="500" height="375" src="https://publiclab.github.io/plots-leaflet-viewer/?tms=http://mapknitter.org/tms/lone-rock-pond/&amp;lon=-73.0733&amp;lat=43.96055&amp;zoom=18"></iframe>
+```
